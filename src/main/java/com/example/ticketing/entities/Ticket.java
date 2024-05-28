@@ -11,21 +11,23 @@ public class Ticket {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "event_id")
-    private Event event;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "quantity")
+    @ManyToOne
+    @JoinColumn(name = "event_id", nullable = false)
+    private Event event;
+
+    @Column(nullable = false)
     private int quantity;
 
-    @Column(name = "purchase_date")
+    @Column(nullable = false)
+    private double price;
+
+    @Column(name = "purchase_date", nullable = false)
     private Date purchaseDate;
 
-    @Column(name = "price")
-    private double price;
+    // Getters and setters
 
     public Long getId() {
         return id;
@@ -33,14 +35,6 @@ public class Ticket {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Event getEvent() {
-        return event;
-    }
-
-    public void setEvent(Event event) {
-        this.event = event;
     }
 
     public User getUser() {
@@ -51,6 +45,14 @@ public class Ticket {
         this.user = user;
     }
 
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
     public int getQuantity() {
         return quantity;
     }
@@ -59,19 +61,19 @@ public class Ticket {
         this.quantity = quantity;
     }
 
-    public Date getPurchaseDate() {
-        return purchaseDate;
-    }
-
-    public void setPurchaseDate(Date purchaseDate) {
-        this.purchaseDate = purchaseDate;
-    }
-
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Date getPurchaseDate() {
+        return purchaseDate;
+    }
+
+    public void setPurchaseDate(Date purchaseDate) {
+        this.purchaseDate = purchaseDate;
     }
 }

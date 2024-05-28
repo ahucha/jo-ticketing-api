@@ -14,6 +14,9 @@ public class UserService {
     private UserRepository userRepository;
 
     public User registerUser(User user) {
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new IllegalArgumentException("Email already exists");
+        }
         return userRepository.save(user);
     }
 
