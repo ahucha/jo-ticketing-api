@@ -4,17 +4,21 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "stadiums")
 public class Stadium {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
-    private int capacity;
+
+    @Column(name = "capacity")
+    private Integer capacity;
 
     @OneToMany(mappedBy = "stadium")
     private Set<Event> events;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

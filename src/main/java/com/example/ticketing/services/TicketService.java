@@ -14,7 +14,15 @@ public class TicketService {
     private TicketRepository ticketRepository;
 
     public Ticket purchaseTicket(Ticket ticket) {
-        // Ajouter la logique métier (vérifications, promotions, etc.)
+        if (ticket.getQuantity() <= 0) {
+            throw new IllegalArgumentException("La quantité de billets doit être supérieure à zéro.");
+        }
+
+        double totalPrice = ticket.getPrice() * ticket.getQuantity();
+        if (ticket.getQuantity() >= 5) {
+            totalPrice *= 0.9;
+        }
+        ticket.setPrice(totalPrice);
         return ticketRepository.save(ticket);
     }
 

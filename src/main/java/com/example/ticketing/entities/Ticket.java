@@ -4,8 +4,10 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "tickets")
 public class Ticket {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
@@ -16,11 +18,15 @@ public class Ticket {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(name = "quantity")
     private int quantity;
+
+    @Column(name = "purchase_date")
     private Date purchaseDate;
+
+    @Column(name = "price")
     private double price;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

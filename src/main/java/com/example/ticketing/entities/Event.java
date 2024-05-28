@@ -6,22 +6,26 @@ import java.util.Set;
 
 @Entity
 public class Event {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "date")
     private Date date;
 
     @ManyToOne
     @JoinColumn(name = "stadium_id")
     private Stadium stadium;
 
+    @Column(name = "status")
     private String status;
 
     @OneToMany(mappedBy = "event")
     private Set<Ticket> tickets;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }

@@ -4,19 +4,27 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "users")
 public class User {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email", unique = true)
     private String email;
+
+    @Column(name = "password")
     private String password;
+
+    @Column(name = "role")
     private String role;
 
     @OneToMany(mappedBy = "user")
     private Set<Ticket> tickets;
 
-    // Getters and Setters
     public Long getId() {
         return id;
     }
